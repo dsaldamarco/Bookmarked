@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  BookDetailView.swift
 //  Bookmarked
 //
 //  Created by Dario Saldamarco on 09/12/24.
@@ -10,37 +10,37 @@ import SwiftUI
 struct BookDetailView: View {
     let book: Book
 
+    @State private var isOptionsModalPresented = false // Stato per la modale delle opzioni
+    @State private var isReviewModalPresented = false // Stato per la modale delle recensioni
+    @State private var selectedReview: Review? // Recensione selezionata
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Layout con immagine a sinistra e testo a destra
-                HStack(spacing: 15) {
+                // Layout orizzontale: Immagine del libro a sinistra, testo a destra
+                HStack(alignment: .top, spacing: 20) {
                     // Immagine del libro
                     Image(book.imageName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 180) // Immagine più piccola
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .frame(width: 120, height: 180)
+                        .cornerRadius(8)
                         .shadow(radius: 5)
-                        .padding(.horizontal)
 
-                    // Dettagli del libro a destra
+                    // Testo (titolo, autore, rating, descrizione)
                     VStack(alignment: .leading, spacing: 10) {
-                        // Titolo del libro
                         Text(book.title)
-                            .font(.title)
+                            .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.leading)
 
-                        // Autore del libro
-                        Text("by \(book.author)")
-                            .font(.subheadline)
+                        Text("By \(book.author)")
+                            .font(.title3)
                             .foregroundColor(.secondary)
 
-                        // Anno di pubblicazione
-                       Text("Published: \(book.publishYear)")
-                           .font(.subheadline)
-                           .foregroundColor(.secondary)
+                        Text("Published in \(book.publishYear)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
 
                         // Sistema di rating
                         HStack {
@@ -51,10 +51,11 @@ struct BookDetailView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+                    .padding(.top, 10)
                 }
-                .padding()
+                .padding(.horizontal)
 
-                // Descrizione del libro
+                // Descrizione
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Description")
                         .font(.headline)
@@ -63,9 +64,10 @@ struct BookDetailView: View {
                     Text(book.description)
                         .font(.body)
                         .foregroundColor(.primary)
-                        .lineLimit(nil) // Per descrizione lunga
+                        .multilineTextAlignment(.leading)
+                        .padding(.top, 10)
                 }
-                .padding(.horizontal)
+                .padding()
 
                 // Sezione recensioni
                 if !book.reviews.isEmpty {
@@ -77,6 +79,10 @@ struct BookDetailView: View {
                         ForEach(book.reviews) { review in
                             ReviewView(review: review)
                                 .padding(.horizontal)
+                                .onTapGesture {
+                                    self.selectedReview = review
+                                    self.isReviewModalPresented = true // Mostra la modale delle recensioni
+                                }
                         }
                     }
                     .padding(.top, 20)
@@ -86,5 +92,27 @@ struct BookDetailView: View {
         }
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                isOptionsModalPresented.toggle()
+            }) {
+                Image(systemName: "ellipsis")
+                    .font(.title2)
+                    .foregroundColor(.primary)
+            }
+        )
+        // Modale per le opzioni
+        .sheet(isPresented: $isOptionsModalPresented) {
+            BookOptionsModalView(book: book)
+        }
+        // Modale per le recensioni
+        .sheet(isPresented: $isReviewModalPresented) {
+            if let review = selectedReview {
+                ReviewModalView(isPresented: $isReviewModalPresented, review: review, book: book)
+            }
+        }
     }
+}
+#Preview {
+    ContentView()
 }

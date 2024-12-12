@@ -6,13 +6,33 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		54737A0A2D09D2EE00073D5E /* MoreSugar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54737A092D09D2EE00073D5E /* MoreSugar-Regular.ttf */; };
+		54737A0B2D09D2EE00073D5E /* MoreSugar-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 54737A082D09D2EE00073D5E /* MoreSugar-Regular.otf */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		542410D82D0740DD00F139EC /* Bookmarked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmarked.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54737A082D09D2EE00073D5E /* MoreSugar-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MoreSugar-Regular.otf"; sourceTree = "<group>"; };
+		54737A092D09D2EE00073D5E /* MoreSugar-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MoreSugar-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		54737A032D09CE9E00073D5E /* Exceptions for "Bookmarked" folder in "Bookmarked" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 542410D72D0740DD00F139EC /* Bookmarked */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		542410DA2D0740DD00F139EC /* Bookmarked */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				54737A032D09CE9E00073D5E /* Exceptions for "Bookmarked" folder in "Bookmarked" target */,
+			);
 			path = Bookmarked;
 			sourceTree = "<group>";
 		};
@@ -34,6 +54,8 @@
 			children = (
 				542410DA2D0740DD00F139EC /* Bookmarked */,
 				542410D92D0740DD00F139EC /* Products */,
+				54737A082D09D2EE00073D5E /* MoreSugar-Regular.otf */,
+				54737A092D09D2EE00073D5E /* MoreSugar-Regular.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54737A0A2D09D2EE00073D5E /* MoreSugar-Regular.ttf in Resources */,
+				54737A0B2D09D2EE00073D5E /* MoreSugar-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +279,7 @@
 				DEVELOPMENT_TEAM = 6KC29BVV5G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookmarked/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +309,7 @@
 				DEVELOPMENT_TEAM = 6KC29BVV5G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookmarked/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
