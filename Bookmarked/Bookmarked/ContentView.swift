@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+    // Properties remain the same
     @State private var selectedTab: Tab = .books
     @State private var selectedMainTab: MainTab = .home
-    @State private var isSearching: Bool = false // Stato per gestire la ricerca
-    @State private var searchText: String = "" // Stato per il testo di ricerca
+    @State private var isSearching: Bool = false
+    @State private var searchText: String = ""
 
+    // Enums remain the same
     enum Tab: String, CaseIterable {
         case books = "Books"
         case reviews = "Reviews"
@@ -28,13 +32,12 @@ struct ContentView: View {
             // Home Tab
             NavigationView {
                 VStack(spacing: 0) {
-                    // Header con titolo centrato e pulsante di ricerca
+                    // Header remains the same
                     ZStack {
                         HStack {
                             Spacer()
                             
                             Button(action: {
-                                // Mostra la search view
                                 isSearching.toggle()
                             }) {
                                 Image(systemName: "magnifyingglass")
@@ -42,7 +45,7 @@ struct ContentView: View {
                                     .foregroundColor(.primary)
                             }
                         }
-                        .padding(.trailing, 10) // Per distanziare il pulsante dal bordo
+                        .padding(.trailing, 10)
 
                         Text("Bookmarked")
                             .font(Font.custom("MoreSugarRegular", size: 36))
@@ -51,7 +54,7 @@ struct ContentView: View {
                     .padding(.bottom, 15)
                     .padding(.horizontal)
 
-                    // Picker per navigazione tra le sezioni
+                    // Picker remains the same
                     Picker("", selection: $selectedTab) {
                         ForEach(Tab.allCases, id: \.self) { tab in
                             Text(tab.rawValue).tag(tab)
@@ -63,12 +66,11 @@ struct ContentView: View {
 
                     ScrollView {
                         VStack(alignment: .leading, spacing: 32) {
-                            // Mostra il contenuto basato sul tab selezionato
                             switch selectedTab {
                             case .books:
                                 booksSection
                             case .reviews:
-                                reviewsSection
+                                ReviewsTabView()  // Replace old reviewsSection with ReviewsTabView
                             case .lists:
                                 listsSection
                             }
@@ -76,9 +78,9 @@ struct ContentView: View {
                         .padding(.top, 2)
                     }
                 }
-                .navigationBarHidden(true) // Nascondi la barra di navigazione
+                .navigationBarHidden(true)
                 .sheet(isPresented: $isSearching) {
-                    SearchView(searchText: $searchText) // Mostra la search view quando `isSearching` è true
+                    SearchView(searchText: $searchText)
                 }
             }
             .tabItem {
@@ -130,7 +132,7 @@ struct ContentView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(sampleBooks.prefix(5)) { book in // Mostriamo i primi 5 libri
+                    ForEach(sampleBooks.prefix(5)) { book in
                         NavigationLink(destination: BookDetailView(book: book)) {
                             Image(book.imageName)
                                 .resizable()
@@ -153,7 +155,7 @@ struct ContentView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(recommendedBooks.suffix(5)) { book in // Mostriamo gli ultimi 5 libri
+                    ForEach(recommendedBooks.suffix(5)) { book in
                         NavigationLink(destination: BookDetailView(book: book)) {
                             Image(book.imageName)
                                 .resizable()
@@ -167,19 +169,6 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
             }
-        }
-    }
-
-    // MARK: - Sezione Reviews
-    var reviewsSection: some View {
-        VStack(alignment: .leading, spacing: 32) {
-            Text("New from friends")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding([.horizontal, .top])
-
-            Text("Here you can show a list of recent reviews.")
-                .padding(.horizontal)
         }
     }
 
@@ -197,11 +186,10 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Vista di ricerca
+// MARK: - SearchView remains exactly the same
 struct SearchView: View {
-    @Binding var searchText: String // Binding per il testo di ricerca
+    @Binding var searchText: String
 
-    // Le categorie da visualizzare
     let browseCategories = [
         "Release date",
         "Genre",
@@ -213,19 +201,16 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            // Titolo "Search"
             Text("Search")
                 .font(.headline)
                 .padding()
 
-            // Barra di ricerca
             TextField("Find books, authors, reviews...", text: $searchText)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
 
-            // Sezione "Browse by"
             VStack(alignment: .leading, spacing: 20) {
                 Text("Browse by")
                     .font(.headline)
@@ -249,7 +234,7 @@ struct SearchView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
 
-                    Divider() // Linea di separazione
+                    Divider()
                 }
             }
             .padding(.top)
@@ -261,9 +246,11 @@ struct SearchView: View {
     }
 }
 
-// MARK: - Preview
+// Preview remains the same
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+// End of file
