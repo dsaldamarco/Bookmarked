@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ReviewModalView: View {
-    @Binding var isPresented: Bool
+    @Environment(\.dismiss) var dismiss
     var review: Review
     var book: Book
 
@@ -112,7 +112,7 @@ struct ReviewModalView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 trailing: Button("Close") {
-                    isPresented = false
+                    dismiss()
                 }
             )
         }
@@ -122,7 +122,7 @@ struct ReviewModalView: View {
 struct ReviewModalView_Previews: PreviewProvider {
     static var previews: some View {
         if let book = recommendedBooks.first, let review = book.reviews.first {
-            ReviewModalView(isPresented: .constant(true), review: review, book: book)
+            ReviewModalView(review: review, book: book)
         } else {
             Text("No data available")
         }

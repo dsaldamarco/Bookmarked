@@ -68,7 +68,7 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 32) {
                             switch selectedTab {
                             case .books:
-                                booksSection
+                                BooksTabView()
                             case .reviews:
                                 ReviewsTabView()  // Replace old reviewsSection with ReviewsTabView
                             case .lists:
@@ -122,55 +122,7 @@ struct ContentView: View {
     }
 
     // MARK: - Sezione Books
-    var booksSection: some View {
-        VStack(alignment: .leading, spacing: 32) {
-            // Prima sezione: Popular This Week
-            Text("Popular This Week")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.horizontal)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(sampleBooks.prefix(5)) { book in
-                        NavigationLink(destination: BookDetailView(book: book)) {
-                            Image(book.imageName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 150, height: 220)
-                                .cornerRadius(12)
-                                .shadow(radius: 5)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                }
-                .padding(.horizontal)
-            }
-
-            // Seconda sezione: Recommended Reads
-            Text("Recommended Reads")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.horizontal)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(recommendedBooks.suffix(5)) { book in
-                        NavigationLink(destination: BookDetailView(book: book)) {
-                            Image(book.imageName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 150, height: 220)
-                                .cornerRadius(12)
-                                .shadow(radius: 5)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                }
-                .padding(.horizontal)
-            }
-        }
-    }
+    
 
     // MARK: - Sezione Lists
     var listsSection: some View {

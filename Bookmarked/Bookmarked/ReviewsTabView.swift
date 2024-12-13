@@ -33,7 +33,7 @@ struct ReviewsTabView: View {
         // Show the modal sheet if a review is selected
         .sheet(isPresented: $isReviewModalPresented) {
             if let selectedReview = selectedReview, let selectedBook = selectedBook {
-                ReviewModalView(isPresented: $isReviewModalPresented, review: selectedReview, book: selectedBook)
+                ReviewModalView(review: selectedReview, book: selectedBook)
             }
         }
     }
