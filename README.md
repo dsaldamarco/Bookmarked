@@ -5,7 +5,8 @@
 <h1 align="center">Bookmarked 📚</h1>
 
 <p align="center">
-  A beautifully designed iOS app for book lovers to track their reads, write reviews, and create custom book lists. Built using SwiftUI for a <b>seamless, modern experience</b>.
+  A beautifully designed iOS app for book lovers to track their reads, write reviews, and create custom book lists. <br>
+  Built using SwiftUI for a <b>seamless, modern experience</b>.
 </p>
 
 ## Features  
