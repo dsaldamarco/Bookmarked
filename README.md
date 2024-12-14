@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="path/to/your/logo.png" width="200"> <!-- Optional logo image, you can remove or replace this line -->
+   <img src="appicon-rounded.png" width="200">  <!-- Optional logo image, you can remove or replace this line -->
 </p>
 
 <h1 align="center">Bookmarked 📚</h1>
