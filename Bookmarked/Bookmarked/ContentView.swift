@@ -91,12 +91,7 @@ struct ContentView: View {
 
             // Activity Tab
             NavigationView {
-                VStack {
-                    Text("Activity Content")
-                        .font(.largeTitle)
-                        .padding()
-                }
-                .navigationTitle("Activity")
+                ActivityTabView()
             }
             .tabItem {
                 Image(systemName: "bolt.fill")
