@@ -106,12 +106,7 @@ struct ContentView: View {
 
             // Profile Tab
             NavigationView {
-                VStack {
-                    Text("Profile Content")
-                        .font(.largeTitle)
-                        .padding()
-                }
-                .navigationTitle("Profile")
+                ProfileTabView()
             }
             .tabItem {
                 Image(systemName: "person.crop.circle.fill")

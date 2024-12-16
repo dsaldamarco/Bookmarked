@@ -15,10 +15,10 @@ struct ListTabView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 32) {
                 // Popular This Week header
-                Text("Popular This Week")
+                Text("Popular this week")
                     .font(.title)
                     .fontWeight(.bold)
-                    .padding(.horizontal)
+                    .padding([.horizontal, .top])
                     .accessibilityAddTraits(.isHeader)
 
                 // Lists Section
