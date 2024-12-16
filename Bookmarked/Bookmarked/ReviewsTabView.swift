@@ -17,6 +17,7 @@ struct ReviewsTabView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .padding([.horizontal, .top])
+                    .accessibilityHidden(true)
 
                 // Iterate over both sampleBooks and recommendedBooks
                 let allBooks = sampleBooks + recommendedBooks
@@ -29,10 +30,14 @@ struct ReviewsTabView: View {
                                 self.selectedBook = book
                                 self.isReviewModalPresented = true
                             }
+                            .accessibilityElement(children: .contain)
+                            .accessibilityLabel("Review by \(review.reviewerName) for \(book.title)")
+                            .accessibilityHint("Double tap to view the full review")
                     }
                 }
             }
         }
+        .accessibilityLabel("Reviews from friends")
         // Updated sheet presentation
         .sheet(isPresented: $isReviewModalPresented) {
             if let selectedReview = selectedReview,
@@ -55,6 +60,7 @@ struct FriendReviewCard: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
+                    .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(review.reviewerName)
@@ -63,6 +69,8 @@ struct FriendReviewCard: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(review.reviewerName) reviewed \(book.title)")
 
                 Spacer()
 
@@ -71,20 +79,24 @@ struct FriendReviewCard: View {
                     .scaledToFill()
                     .frame(width: 60, height: 90)
                     .cornerRadius(8)
+                    .accessibilityLabel("Book cover of \(book.title)")
             }
 
             HStack {
                 StarRatingView(rating: review.rating)
+                    .accessibilityLabel("Rating: \(String(format: "%.1f", review.rating)) out of 5 stars")
                 Spacer()
                 Text(book.publishYear)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .accessibilityLabel("Published in \(book.publishYear)")
             }
 
             Text(review.comment)
                 .font(.body)
                 .lineLimit(3)
                 .padding(.top, 4)
+                .accessibilityLabel("Review comment: \(review.comment)")
         }
         .padding()
         .background(Color(.systemGray6))

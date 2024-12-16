@@ -16,4 +16,6 @@ struct Book: Identifiable {
     let rating: Double
     let description: String
     let reviews: [Review] // Per le recensioni
+  //  let readingHighlights: String?
+
 }

@@ -23,15 +23,18 @@ struct BookOptionsModalView: View {
                 .fontWeight(.bold)
                 .padding(.top, 25)
                 .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
             
             Text("Published in \(book.publishYear)")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .padding(.bottom, 5)
+                .accessibilityLabel("Publication year: \(book.publishYear)")
             
             // Add top divider
             Divider()
                 .padding(.horizontal)
+                .accessibilityHidden(true)
             
             // Read, Recommend, Bookmark buttons
             HStack(spacing: 0) {
@@ -48,6 +51,9 @@ struct BookOptionsModalView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
+                .accessibilityLabel(isReadSelected ? "Remove from read books" : "Mark as read")
+                .accessibilityHint("Double tap to \(isReadSelected ? "remove this book from" : "add this book to") your read list")
+
 
                 Button(action: { isRecommendSelected.toggle() }) {
                     VStack {
@@ -61,6 +67,8 @@ struct BookOptionsModalView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
+                .accessibilityLabel(isRecommendSelected ? "Remove recommendation" : "Recommend this book")
+                .accessibilityHint("Double tap to \(isRecommendSelected ? "remove" : "add") your recommendation")
 
                 Button(action: { isBookmarkSelected.toggle() }) {
                     VStack {
@@ -74,6 +82,8 @@ struct BookOptionsModalView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
+                .accessibilityLabel(isBookmarkSelected ? "Remove bookmark" : "Bookmark this book")
+                .accessibilityHint("Double tap to \(isBookmarkSelected ? "remove" : "add") bookmark")
             }
             .padding(.horizontal)
             .padding(.vertical, 20)
@@ -87,6 +97,7 @@ struct BookOptionsModalView: View {
                 Text("Rate:")
                     .font(.headline)
                     .foregroundColor(.gray)
+                    .accessibilityAddTraits(.isHeader)
                 
                 HStack {
                     ForEach(1...5, id: \.self) { starIndex in
@@ -96,8 +107,13 @@ struct BookOptionsModalView: View {
                                 .foregroundColor(starIndex <= rating ? .yellow : .gray)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        .accessibilityLabel("\(starIndex) star\(starIndex == 1 ? "" : "s")")
+                        .accessibilityHint("Rate this book \(starIndex) star\(starIndex == 1 ? "" : "s")")
                     }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Rating: \(rating) out of 5 stars")
+
             }
             .padding(.vertical, 5)
             .padding(.bottom, 20)
@@ -106,6 +122,7 @@ struct BookOptionsModalView: View {
             Divider()
                 .padding(.horizontal)
                 .padding(.bottom, 10)
+                .accessibilityHidden(true)
             
             // Action buttons
             VStack(spacing: 0) {
@@ -120,8 +137,9 @@ struct BookOptionsModalView: View {
                     .padding(.vertical, 12)
                     .padding(.horizontal)
                 }
+                .accessibilityHint("Double tap to write a review")
                 
-                Divider()
+                Divider().accessibilityHidden(true)
                 
                 Button(action: {}) {
                     HStack {
@@ -134,8 +152,9 @@ struct BookOptionsModalView: View {
                     .padding(.vertical, 12)
                     .padding(.horizontal)
                 }
+                .accessibilityHint("Double tap to add this book to your lists")
                 
-                Divider()
+                Divider().accessibilityHidden(true)
                 
                 Button(action: {}) {
                     HStack {
@@ -148,6 +167,7 @@ struct BookOptionsModalView: View {
                     .padding(.vertical, 12)
                     .padding(.horizontal)
                 }
+                .accessibilityHint("Double tap to share this book")
             }
             .background(Color(.systemGray6))
             .cornerRadius(10)

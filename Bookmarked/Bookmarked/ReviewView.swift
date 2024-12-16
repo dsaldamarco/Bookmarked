@@ -24,6 +24,7 @@ struct ReviewView: View {
                         Circle().stroke(Color.gray.opacity(0.5), lineWidth: 1)
                     )
                     .shadow(radius: 2)
+                    .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     // Nome e Rating
@@ -31,8 +32,11 @@ struct ReviewView: View {
                         Text(review.reviewerName)
                             .font(.headline)
                             .foregroundColor(.primary)
+                            .accessibilityAddTraits(.isHeader)
                         Spacer()
                         StarRatingView(rating: review.rating)
+                        .accessibilityLabel("Rating: \(String(format: "%.1f", review.rating)) out of 5 stars")
+
                     }
 
                     // Commento
@@ -41,12 +45,18 @@ struct ReviewView: View {
                         .foregroundColor(.secondary)
                         .lineLimit(3)
                         .padding(.top, 8)
+                        .accessibilityLabel("Review comment: \(review.comment)")
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Review by \(review.reviewerName)")
             }
         }
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .accessibilityElement(children: .contain)
+        .accessibilityHint("Double tap to view full review details")
+
     }
 }

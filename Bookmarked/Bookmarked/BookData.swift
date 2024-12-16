@@ -27,7 +27,7 @@ let recommendedBooks: [Book] = [
         publishYear: "1869",
         imageName: "war_and_peace",
         rating: 4.7,
-        description: "An epic novel about Napoleon's invasion of Russia.",
+        description: "War and Peace by Leo Tolstoy is a sweeping epic that intertwines the personal and political, set against the backdrop of early 19th-century Russia during the Napoleonic Wars. This monumental novel explores the lives of aristocratic families as they navigate love, ambition, and the turmoil of a society in flux. Tolstoy masterfully portrays the complexities of human nature, blending intimate moments with grand historical events. Through richly drawn characters and profound philosophical insights, the novel examines themes of destiny, free will, and the search for meaning in the face of chaos. A timeless masterpiece of world literature, War and Peace offers a deeply immersive experience, capturing the vastness of life and the interconnectedness of personal and historical narratives. Perfect for readers seeking a transformative and thought-provoking journey through history, love, and human resilience.",
         reviews: [
             Review(reviewerName: "EpicReader", rating: 5.0, comment: " A masterpiece of historical fiction.", avatarImageName: "avatar1"),
             Review(reviewerName: "BookLover", rating: 4.5, comment: " Challenging but rewarding.", avatarImageName: "avatar2"),
@@ -40,7 +40,7 @@ let recommendedBooks: [Book] = [
         publishYear: "1951",
         imageName: "catcher_in_the_rye",
         rating: 4.2,
-        description: "The story follows Holden Caulfield, a disillusioned teenager who has been kicked out of multiple prep schools. As he wanders New York City, grappling with his feelings of alienation, depression, and a deep sense of loss, Holden reflects on the adult world and his desire to protect innocence, especially that of his younger sister, Phoebe. Through his narrative, the novel explores themes of identity, isolation, and the struggles of growing up.",
+        description: "J.D. Salinger’s The Catcher in the Rye is more than just a coming-of-age novel; it’s a profound exploration of alienation, identity, and the search for meaning. Narrated by the sharp yet deeply flawed Holden Caulfield, the story captures a raw and honest portrayal of teenage disillusionment and rebellion. Set over a few turbulent days in New York City, Holden’s journey is marked by encounters that highlight his struggle to connect with a world he perceives as 'phony.' The book is celebrated for its conversational, stream-of-consciousness style, which mirrors Holden’s chaotic thoughts and emotional turmoil. It’s not just a story but an experience—one that resonates deeply with readers who have ever felt out of step with societal norms. The themes of loneliness, innocence, and the desire for authenticity make it universally relatable.",
         reviews: [
             Review(reviewerName: "EpicReader", rating: 5.0, comment: "Relatable and timeless.", avatarImageName: "avatar1"),
             Review(reviewerName: "BookLover", rating: 4.5, comment: "A journey into the mind of adolescence.", avatarImageName: "avatar2"),
@@ -56,7 +56,7 @@ let sampleBooks = [
         publishYear: "1960",
         imageName: "mockingbird",
         rating: 4.5,
-        description: "A classic of modern American literature, the book explores racial injustice in the Deep South through the eyes of young Scout Finch.",
+        description: "To Kill a Mockingbird is a story that has shaped generations, blending a tender coming-of-age tale with a powerful examination of racism and injustice in 1930s Alabama. At its heart is Scout Finch, a curious and spirited young girl, who learns about courage and empathy as she witnesses her father, Atticus, defend an innocent man against prejudice and hatred. The novel paints a vivid picture of a small Southern town, balancing moments of childhood wonder with the weight of moral questions that still resonate today. With its unforgettable characters and timeless message, To Kill a Mockingbird remains a testament to the importance of compassion, justice, and standing up for what is right, even when it’s difficult. Whether you’re drawn to its compelling courtroom drama, its deeply human characters, or its exploration of societal divides, this is a book that will stay with you long after you’ve turned the final page.",
         reviews: [
                     Review(reviewerName: "BookLover92", rating: 5.0, comment: "An absolutely stunning read! The story of Scout and Atticus will stay with me forever.", avatarImageName: "avatar1"),
                     Review(reviewerName: "LiteraryFan", rating: 4.5, comment: "Beautifully written and thought-provoking. A must-read for everyone.", avatarImageName: "avatar2"),
@@ -83,7 +83,7 @@ let sampleBooks = [
         publishYear: "1851",
         imageName: "mobydick",
         rating: 3.87,
-        description: "An epic tale of obsession and revenge as Captain Ahab hunts the elusive white whale, Moby Dick.",
+        description: "Moby-Dick is a thrilling and philosophical journey into the depths of obsession, fate, and humanity’s relationship with nature. The novel follows Ishmael, a sailor aboard the whaling ship Pequod, led by the enigmatic and vengeful Captain Ahab. Ahab’s relentless pursuit of the elusive white whale, Moby Dick, becomes a powerful allegory for the dangers of unchecked ambition and the mysteries of the natural world. Rich in symbolism and lyrical prose, Moby-Dick explores themes of revenge, identity, and the vastness of existence.",
         reviews: [
             Review(reviewerName: "SeaLover", rating: 4.5, comment: "A powerful story of obsession and the sea. Melville's prose is dense but rewarding.", avatarImageName: "avatar1"),
                Review(reviewerName: "CaptainFanatic", rating: 5.0, comment: "The ultimate adventure tale! A deep dive into human nature and revenge.", avatarImageName: "avatar2"),
@@ -97,7 +97,7 @@ let sampleBooks = [
         publishYear: "1925",
         imageName: "gatsby",
         rating: 4.0,
-        description: "A story of wealth, love, and the American Dream set in the Roaring Twenties.",
+        description: "The Great Gatsby captures the glitz and tragedy of the Roaring Twenties through the eyes of Nick Carraway, a newcomer to the dazzling world of Long Island’s elite. At its center is Jay Gatsby, a mysterious and wealthy man whose extravagant lifestyle hides an unrelenting longing for his lost love, Daisy Buchanan. Set against a backdrop of jazz, excess, and crumbling ideals, the novel explores themes of ambition, love, and the elusive nature of the American Dream. Fitzgerald’s prose shimmers with beauty and heartbreak, painting a picture of a world where appearances often mask deeper truths.",
         reviews: [
             Review(reviewerName: "Dreamer", rating: 5.0, comment: "Fitzgerald captures the Jazz Age perfectly. A tragic, beautiful story.", avatarImageName: "avatar1"),
                 Review(reviewerName: "LiteraryEnthusiast", rating: 4.5, comment: "A timeless critique of the American Dream. Haunting and elegant.", avatarImageName: "avatar2"),
@@ -110,7 +110,7 @@ let sampleBooks = [
         publishYear: "1813",
         imageName: "pride",
         rating: 4.8,
-        description: "A romantic comedy that critiques the British landed gentry and societal expectations of marriage.",
+        description: "Pride and Prejudice is a timeless exploration of love, societal expectations, and personal growth. Set in rural England, the story unfolds as Elizabeth Bennet, a witty and independent young woman, navigates complex relationships with her family and suitors, particularly the enigmatic Mr. Darcy. Their initial misunderstandings and clashing personalities give way to self-reflection, revealing themes of pride, prejudice, and the transformative power of love. More than just a romantic novel, Pride and Prejudice critiques the rigid social structures of Austen’s time, highlighting issues such as class, marriage, and the limitations placed on women. With its sharp humor, memorable characters, and enduring lessons, the book remains a celebrated cornerstone of English literature",
         reviews: [
             Review(reviewerName: "RomanceFan", rating: 5.0, comment: "Elizabeth Bennet and Mr. Darcy are iconic. Austen's wit shines.", avatarImageName: "avatar1"),
                 Review(reviewerName: "PeriodDramaLover", rating: 4.5, comment: "A delightful exploration of love and social class. Timeless.", avatarImageName: "avatar2"),

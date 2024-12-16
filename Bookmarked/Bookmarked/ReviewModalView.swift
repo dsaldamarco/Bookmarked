@@ -27,26 +27,35 @@ struct ReviewModalView: View {
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                     .shadow(radius: 10)
+                                    .accessibilityHidden(true)
                                 VStack(alignment: .leading) {
                                     Text(review.reviewerName)
                                         .font(.headline)
+                                        .accessibilityAddTraits(.isHeader)
                                 }
                             }
+                            .accessibilityElement(children: .combine)
+                                .accessibilityLabel("Review by \(review.reviewerName)")
 
                             Text(book.title)
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
+                                .accessibilityAddTraits(.isHeader)
 
                             StarRatingView(rating: review.rating)
-
+                                .accessibilityLabel("Rating: \(String(format: "%.1f", review.rating)) out of 5 stars")
+                            
                             Text("Reviewed on: Dec 10, 2024")
                                 .font(.footnote)
                                 .foregroundColor(.gray)
-
+                                .accessibilityLabel("Review date: December 10, 2024")
+                            
                             Text(review.comment)
                                 .font(.body)
                                 .padding(.top, 8)
+                                .accessibilityLabel("Review comment: \(review.comment)")
+
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -56,6 +65,8 @@ struct ReviewModalView: View {
                             .frame(width: 100, height: 150)
                             .cornerRadius(8)
                             .shadow(radius: 5)
+                            .accessibilityLabel("Book cover of \(book.title)")
+
                     }
                     .padding()
 
@@ -72,10 +83,14 @@ struct ReviewModalView: View {
                                         .foregroundColor(.primary)
                                 }
                             }
-
+                            .accessibilityLabel(isLiked ? "Unlike review" : "Like review")
+                            .accessibilityHint("Double tap to \(isLiked ? "remove like" : "like this review")")
+                            
                             Text("\(isLiked ? 1338 : 1337) likes")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
+                                .accessibilityLabel("\(isLiked ? 1338 : 1337) people liked this review")
+
                         }
                         .padding(.bottom, 10)
 
@@ -91,7 +106,9 @@ struct ReviewModalView: View {
                                     .background(Color(.systemGray5))
                                     .cornerRadius(8)
                             }
-
+                            .accessibilityLabel("View 10 comments")
+                            .accessibilityHint("Double tap to view all comments")
+                            
                             Button(action: {
                                 print("Another action clicked")
                             }) {
@@ -103,6 +120,8 @@ struct ReviewModalView: View {
                                     .background(Color(.systemGray5))
                                     .cornerRadius(8)
                             }
+                            .accessibilityLabel("Save review")
+                            .accessibilityHint("Double tap to save this review")
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -112,6 +131,8 @@ struct ReviewModalView: View {
             .navigationTitle("Review")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button("Close") { dismiss() })
+                .accessibilityLabel("Close review")
+                .accessibilityHint("Double tap to close the review details")
         }
     }
 }
