@@ -80,8 +80,8 @@ struct BookDetailView: View {
                             ReviewView(review: review)
                                 .padding(.horizontal)
                                 .onTapGesture {
-                                    self.selectedReview = review
-                                    self.isReviewModalPresented = true // Mostra la modale delle recensioni
+                                    selectedReview = review
+                                                isReviewModalPresented = true
                                 }
                         }
                     }
@@ -108,7 +108,7 @@ struct BookDetailView: View {
         // Modale per le recensioni
         .sheet(isPresented: $isReviewModalPresented) {
             if let review = selectedReview {
-                ReviewModalView(isPresented: $isReviewModalPresented, review: review, book: book)
+                ReviewModalView(review: review, book: book)
             }
         }
     }

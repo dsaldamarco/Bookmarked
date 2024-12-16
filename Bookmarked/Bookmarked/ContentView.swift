@@ -32,7 +32,7 @@ struct ContentView: View {
             // Home Tab
             NavigationView {
                 VStack(spacing: 0) {
-                    // Header remains the same
+                    // Header
                     ZStack {
                         HStack {
                             Spacer()
@@ -68,11 +68,11 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 32) {
                             switch selectedTab {
                             case .books:
-                                BooksTabView()
+                                BookTabView()
                             case .reviews:
-                                ReviewsTabView()  // Replace old reviewsSection with ReviewsTabView
+                                ReviewsTabView()
                             case .lists:
-                                listsSection
+                                ListTabView()
                             }
                         }
                         .padding(.top, 2)
@@ -118,22 +118,6 @@ struct ContentView: View {
                 Text("Profile")
             }
             .tag(MainTab.profile)
-        }
-    }
-
-    // MARK: - Sezione Books
-    
-
-    // MARK: - Sezione Lists
-    var listsSection: some View {
-        VStack(alignment: .leading, spacing: 32) {
-            Text("Your Lists")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.horizontal)
-
-            Text("Here you can manage your custom lists.")
-                .padding(.horizontal)
         }
     }
 }

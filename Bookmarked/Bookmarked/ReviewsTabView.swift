@@ -1,9 +1,14 @@
+//
+//  ReviewsTabView.swift
+//  Bookmarked
+//
+
 import SwiftUI
 
 struct ReviewsTabView: View {
-    @State private var isReviewModalPresented = false  // State to track if the modal is presented
-    @State private var selectedReview: Review?         // State to track the selected review
-    @State private var selectedBook: Book?             // State to track the book related to the selected review
+    @State private var isReviewModalPresented = false
+    @State private var selectedReview: Review?
+    @State private var selectedBook: Book?
 
     var body: some View {
         ScrollView {
@@ -20,40 +25,37 @@ struct ReviewsTabView: View {
                         FriendReviewCard(book: book, review: review)
                             .padding(.horizontal)
                             .onTapGesture {
-                                // Set the selected review and book
                                 self.selectedReview = review
                                 self.selectedBook = book
-                                // Present the sheet
                                 self.isReviewModalPresented = true
                             }
                     }
                 }
             }
         }
-        // Show the modal sheet if a review is selected
+        // Updated sheet presentation
         .sheet(isPresented: $isReviewModalPresented) {
-            if let selectedReview = selectedReview, let selectedBook = selectedBook {
+            if let selectedReview = selectedReview,
+               let selectedBook = selectedBook {
                 ReviewModalView(review: selectedReview, book: selectedBook)
             }
         }
     }
 }
 
+// FriendReviewCard remains exactly the same
 struct FriendReviewCard: View {
     let book: Book
     let review: Review
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // User Info and Book Details
             HStack(spacing: 12) {
-                // User Avatar
                 Image(review.avatarImageName)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
 
-                // User Name and Book Info
                 VStack(alignment: .leading, spacing: 4) {
                     Text(review.reviewerName)
                         .font(.headline)
@@ -64,7 +66,6 @@ struct FriendReviewCard: View {
 
                 Spacer()
 
-                // Book Cover
                 Image(book.imageName)
                     .resizable()
                     .scaledToFill()
@@ -72,7 +73,6 @@ struct FriendReviewCard: View {
                     .cornerRadius(8)
             }
 
-            // Rating and Year
             HStack {
                 StarRatingView(rating: review.rating)
                 Spacer()
@@ -81,7 +81,6 @@ struct FriendReviewCard: View {
                     .foregroundColor(.secondary)
             }
 
-            // Review Text
             Text(review.comment)
                 .font(.body)
                 .lineLimit(3)

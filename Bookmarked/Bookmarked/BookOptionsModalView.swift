@@ -13,103 +13,147 @@ struct BookOptionsModalView: View {
     @State private var isReadSelected = false
     @State private var isRecommendSelected = false
     @State private var isBookmarkSelected = false
-    @State private var rating = 0 // Numero di stelle selezionate
+    @State private var rating = 0
     
     var body: some View {
-        VStack(spacing: 20) {
-            // Titolo del libro
+        VStack(spacing: 15) {
+            // Title and year
             Text(book.title)
                 .font(.title)
                 .fontWeight(.bold)
-                .padding(.top)
+                .padding(.top, 25)
+                .multilineTextAlignment(.center)
             
             Text("Published in \(book.publishYear)")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                .padding(.bottom)
+                .padding(.bottom, 5)
             
-            // Sezione dei pulsanti "Read", "Recommend" e "Bookmark"
-            HStack {
-                // Pulsante "Read" a sinistra
-                Button(action: {
-                    isReadSelected.toggle()
-                }) {
+            // Add top divider
+            Divider()
+                .padding(.horizontal)
+            
+            // Read, Recommend, Bookmark buttons
+            HStack(spacing: 0) {
+                // Buttons remain the same
+                Button(action: { isReadSelected.toggle() }) {
                     VStack {
                         Image(systemName: isReadSelected ? "book.fill" : "book")
-                            .font(.system(size: 40))
+                            .font(.system(size: 30))
                             .foregroundColor(isReadSelected ? .blue : .gray)
-                            .padding(.bottom, 3)
+                            .padding(.bottom, 2)
                         Text("Read")
                             .font(.body)
                             .foregroundColor(isReadSelected ? .blue : .gray)
                     }
                 }
+                .frame(maxWidth: .infinity)
 
-                // Spazio tra "Read" e "Recommend"
-                Spacer()
-
-                // Pulsante "Recommend" al centro
-                Button(action: {
-                    isRecommendSelected.toggle()
-                }) {
+                Button(action: { isRecommendSelected.toggle() }) {
                     VStack {
                         Image(systemName: isRecommendSelected ? "circle.fill" : "circle")
-                            .font(.system(size: 40))
+                            .font(.system(size: 30))
                             .foregroundColor(isRecommendSelected ? .red : .gray)
-                            .padding(.bottom, 3)
+                            .padding(.bottom, 2)
                         Text("Recommend")
                             .font(.body)
                             .foregroundColor(isRecommendSelected ? .red : .gray)
                     }
                 }
-                .frame(maxWidth: .infinity) // Assicura che il pulsante occupi il centro disponibile
+                .frame(maxWidth: .infinity)
 
-                // Spazio tra "Recommend" e "Bookmark"
-                Spacer()
-
-                // Pulsante "Bookmark" a destra
-                Button(action: {
-                    isBookmarkSelected.toggle()
-                }) {
+                Button(action: { isBookmarkSelected.toggle() }) {
                     VStack {
                         Image(systemName: isBookmarkSelected ? "bookmark.fill" : "bookmark")
-                            .font(.system(size: 40))
+                            .font(.system(size: 30))
                             .foregroundColor(isBookmarkSelected ? .yellow : .gray)
-                            .padding(.bottom, 3)
+                            .padding(.bottom, 2)
                         Text("Bookmark")
                             .font(.body)
                             .foregroundColor(isBookmarkSelected ? .yellow : .gray)
                     }
                 }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
             .padding(.horizontal)
+            .padding(.vertical, 20)
             
-            // Sezione "Rate"
-            VStack {
+            // Add bottom divider after buttons
+            Divider()
+                .padding(.horizontal)
+            
+            // Rating section
+            VStack(spacing: 5) {
                 Text("Rate:")
                     .font(.headline)
-                    .padding(.bottom, 10)
                     .foregroundColor(.gray)
                 
-                // Stelle cliccabili
                 HStack {
                     ForEach(1...5, id: \.self) { starIndex in
-                        Button(action: {
-                            rating = starIndex // Aggiorna il numero di stelle selezionate
-                        }) {
+                        Button(action: { rating = starIndex }) {
                             Image(systemName: starIndex <= rating ? "star.fill" : "star")
-                                .font(.system(size: 40))
+                                .font(.system(size: 30))
                                 .foregroundColor(starIndex <= rating ? .yellow : .gray)
                         }
-                        .buttonStyle(PlainButtonStyle()) // Evita l'effetto di default del pulsante
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
-                .padding(.top, 5)
             }
-            .padding()
+            .padding(.vertical, 5)
+            .padding(.bottom, 20)
+            
+            // Add divider after rating section
+            Divider()
+                .padding(.horizontal)
+                .padding(.bottom, 10)
+            
+            // Action buttons
+            VStack(spacing: 0) {
+                Button(action: {}) {
+                    HStack {
+                        Text("Review")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                }
+                
+                Divider()
+                
+                Button(action: {}) {
+                    HStack {
+                        Text("Add to lists")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                }
+                
+                Divider()
+                
+                Button(action: {}) {
+                    HStack {
+                        Text("Share")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                }
+            }
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
+            .padding(.horizontal)
         }
         .padding()
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.height(550)])
     }
 }
