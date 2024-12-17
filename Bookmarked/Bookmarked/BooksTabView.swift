@@ -6,6 +6,7 @@ struct BookTabView: View {
     @State private var isShowingDetail = false
     
     var body: some View {
+        
         ZStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {

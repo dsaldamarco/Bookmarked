@@ -11,7 +11,9 @@ struct ReviewsTabView: View {
     @State private var selectedBook: Book?
 
     var body: some View {
-        ScrollView {
+        _ = selectedReview
+        _ = selectedBook
+        return ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("New from friends")
                     .font(.title)
@@ -23,6 +25,8 @@ struct ReviewsTabView: View {
                 let allBooks = sampleBooks + recommendedBooks
                 ForEach(allBooks) { book in
                     ForEach(book.reviews) { review in
+                        
+
                         FriendReviewCard(book: book, review: review)
                             .padding(.horizontal)
                             .onTapGesture {
@@ -43,6 +47,8 @@ struct ReviewsTabView: View {
             if let selectedReview = selectedReview,
                let selectedBook = selectedBook {
                 ReviewModalView(review: selectedReview, book: selectedBook)
+            } else {
+                Text("Can't display review")
             }
         }
     }
@@ -50,8 +56,8 @@ struct ReviewsTabView: View {
 
 // FriendReviewCard remains exactly the same
 struct FriendReviewCard: View {
-    let book: Book
-    let review: Review
+    @State var book: Book
+    @State var review: Review
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {

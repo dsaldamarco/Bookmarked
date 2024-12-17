@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookDetailView: View {
+    
     let book: Book
 
     @State private var isOptionsModalPresented = false // Stato per la modale delle opzioni
@@ -15,7 +16,10 @@ struct BookDetailView: View {
     @State private var selectedReview: Review? // Recensione selezionata
 
     var body: some View {
-        ScrollView {
+        
+        _ = selectedReview
+       
+        return  ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 // Layout orizzontale: Immagine del libro a sinistra, testo a destra
                 HStack(alignment: .top, spacing: 20) {
