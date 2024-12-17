@@ -46,15 +46,23 @@ struct ActivityTabView: View {
                 ForEach(activities) { activity in
                     if activity.type == .watch {
                         watchedBookView(activity: activity)
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel("\(activity.userName) read a book")
+                            .accessibilityHint("Double tap to expand activity details")
                     } else {
                         likedReviewView(activity: activity)
                             .background(Color(.systemGray6))
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel("\(activity.userName) liked a review")
+                            .accessibilityHint("Double tap to expand activity details")
+
                     }
                 }
             }
             .padding(.vertical)
         }
         .navigationTitle("Activity")
+        .accessibilityLabel("Activity Feed")
     }
     
     private func watchedBookView(activity: ActivityItem) -> some View {
@@ -65,6 +73,8 @@ struct ActivityTabView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
+                    .accessibilityHidden(true) // Hide avatar from VoiceOver
+
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(activity.userName)
@@ -73,12 +83,15 @@ struct ActivityTabView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(activity.userName) read")
                 
                 Spacer()
                 
                 Text(activity.timeAgo)
                     .font(.caption)
                     .foregroundColor(.secondary)
+                    .accessibilityLabel("\(activity.timeAgo) ago")
             }
             
             if let book = activity.book {
@@ -90,6 +103,7 @@ struct ActivityTabView: View {
                 StarRatingView(rating: activity.rating ?? book.rating)
                     .frame(height: 20)
                     .scaleEffect(0.7, anchor: .leading)
+                    .accessibilityLabel("Rating: \(Int(activity.rating ?? book.rating)) stars")
                 
                 HStack(alignment: .top, spacing: 12) {
                     Image(book.imageName)
@@ -97,6 +111,7 @@ struct ActivityTabView: View {
                         .scaledToFill()
                         .frame(width: 80, height: 120)
                         .cornerRadius(8)
+                        .accessibilityHidden(true)
                     
                     if let review = activity.review {
                         VStack(alignment: .leading, spacing: 8) {
@@ -105,6 +120,7 @@ struct ActivityTabView: View {
                                 .foregroundColor(.secondary)
                                 .lineLimit(4)
                                 .padding(.bottom, 8)
+                                .accessibilityLabel("Review: \(review.comment)")
                             
                             // Like button
                             Button(action: {
@@ -123,9 +139,15 @@ struct ActivityTabView: View {
                                 }
                                 .padding(.bottom, 8)
                             }
+                            .accessibilityLabel(likedReviews.contains(activity.id) ? "Unlike review" : "Like review")
+                            .accessibilityHint("Double tap to \(likedReviews.contains(activity.id) ? "unlike" : "like") this review")
+
                         }
                     }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Book: \(book.title)")
+
             }
         }
         .padding()
@@ -137,6 +159,7 @@ struct ActivityTabView: View {
                 .resizable()
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
+                .accessibilityHidden(true)
             
             Text("\(activity.userName) liked David's 4 star review of The Catcher in the Rye")
                 .font(.subheadline)
@@ -146,6 +169,7 @@ struct ActivityTabView: View {
             Text(activity.timeAgo)
                 .font(.caption)
                 .foregroundColor(.secondary)
+                .accessibilityLabel("\(activity.timeAgo) ago")
         }
         .padding()
     }

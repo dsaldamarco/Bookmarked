@@ -27,12 +27,16 @@ struct ProfileTabView: View {
                             .frame(width: 80, height: 80)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+                            .accessibilityHidden(true) // Hide avatar
+
                         
                         Text("dardarius")
                             .font(.headline)
                             .fontWeight(.medium)
                             .lineLimit(1)
                             .frame(width: 100, alignment: .leading)
+                            .accessibilityLabel("Username: dardarius")
+
                     }
                     
                     Spacer()
@@ -47,10 +51,14 @@ struct ProfileTabView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("Read \(readBooks) books")
+
                         
                         Rectangle()
                             .frame(width: 1, height: 40)
                             .foregroundColor(.gray.opacity(0.3))
+                            .accessibilityHidden(true)
                         
                         VStack(spacing: 4) {
                             Text("\(wantToReadBooks)")
@@ -60,6 +68,8 @@ struct ProfileTabView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("Want to read \(wantToReadBooks) books")
                     }
                 }
                 .padding(.horizontal)
@@ -80,10 +90,13 @@ struct ProfileTabView: View {
                                     .frame(width: 100, height: 150)
                                     .cornerRadius(8)
                                     .shadow(radius: 4)
+                                    .accessibilityLabel("Favorite book: \(book.title)")
+
                             }
                         }
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Favorite books carousel")
                 }
                 
                 // Recent Activity section
@@ -111,10 +124,14 @@ struct ProfileTabView: View {
                                     }
                                     .frame(width: 100) // Match image width
                                 }
+                                .accessibilityElement(children: .combine)
+                                .accessibilityLabel("Recent book: \(book.title), rated \(Int(book.rating)) stars")
+
                             }
                         }
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Recent activity carousel")
                 }
                 
                 // Stats section
@@ -133,6 +150,9 @@ struct ProfileTabView: View {
                         .padding(.vertical, 12)
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Books: \(totalBooks) out of \(yearlyGoal) yearly goal")
+                    .accessibilityHint("Double tap to view books")
+
                     
                     Divider()
                     
@@ -150,6 +170,8 @@ struct ProfileTabView: View {
                         .padding(.vertical, 12)
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Reviews: \(reviewCount) total")
+                    .accessibilityHint("Double tap to view reviews")
                     
                     Divider()
                     
@@ -167,6 +189,8 @@ struct ProfileTabView: View {
                         .padding(.vertical, 12)
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Lists: \(listCount) total")
+                    .accessibilityHint("Double tap to view lists")
                     
                     Divider()
                     
@@ -184,6 +208,8 @@ struct ProfileTabView: View {
                         .padding(.vertical, 12)
                         .padding(.horizontal)
                     }
+                    .accessibilityLabel("Want to read: \(wantToReadBooks) books")
+                    .accessibilityHint("Double tap to view want to read list")
                 }
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
@@ -192,6 +218,8 @@ struct ProfileTabView: View {
             .padding(.vertical)
         }
         .navigationTitle("Profile")
+        .accessibilityLabel("Profile page")
+
     }
 }
 

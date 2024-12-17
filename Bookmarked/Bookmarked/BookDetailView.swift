@@ -11,7 +11,7 @@ struct BookDetailView: View {
     let book: Book
 
     @State private var isOptionsModalPresented = false // Stato per la modale delle opzioni
-    @State private var isReviewModalPresented = false // Stato per la modale delle recensioni
+    @State private var isReviewModalPresented = false// Stato per la modale delle recensioni
     @State private var selectedReview: Review? // Recensione selezionata
 
     var body: some View {
