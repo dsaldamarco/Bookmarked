@@ -26,7 +26,7 @@
 ## Screenshots  
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="Bookmarked/Boomarked/Assets.xcassets/homepage.jpg" width="30%" />  
+  <img src="Bookmarked/Bookmarked/Assets.xcassets/homepage.jpg" width="30%" />  
   <img src="Bookmarked/Bookmarked/Assets.xcassets/review.jpg" width="30%" />
   <img src="Bookmarked/Bookmarked/Assets.xcassets/bookdetail.jpg" width="30%" />
 </div>
