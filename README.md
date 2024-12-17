@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="appicon-rounded.png" width="200">  <!-- Optional logo image, you can remove or replace this line -->
+   <img src="Bookmarked/Bookmarked/Assets.xcassets/appicon-rounded.png" width="200">  <!-- Optional logo image, you can remove or replace this line -->
 </p>
 
 <h1 align="center">Bookmarked 📚</h1>
@@ -26,9 +26,9 @@
 ## Screenshots  
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="homepage.jpg" width="30%" />  
-  <img src="review.jpg" width="30%" />
-  <img src="bookdetail.jpg" width="30%" />
+  <img src="Bookmarked/Boomarked/Assets.xcassets/homepage.jpg" width="30%" />  
+  <img src="Bookmarked/Bookmarked/Assets.xcassets/review.jpg" width="30%" />
+  <img src="Bookmarked/Bookmarked/Assets.xcassets/bookdetail.jpg" width="30%" />
 </div>
 
 ## Requirements  
