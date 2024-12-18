@@ -63,6 +63,6 @@
 Created by <b>Dario Saldamarco.</b> <br>
 Feel free to reach out for feedback or collaboration!
 
-## License
+## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
    
