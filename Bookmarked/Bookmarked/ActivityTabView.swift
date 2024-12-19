@@ -23,7 +23,7 @@ struct ActivityItem: Identifiable {
 }
 
 struct ActivityTabView: View {
-    // Activity data with state for each item's like status
+    // Activity data
     @State private var activities: [ActivityItem] = [
         ActivityItem(type: .watch, userAvatar: "avatar1", userName: "Emma Wilson", timeAgo: "2h",
                     book: sampleBooks[0], review: sampleBooks[0].reviews[0], rating: 4.5),
@@ -37,7 +37,6 @@ struct ActivityTabView: View {
                     book: recommendedBooks[1], review: recommendedBooks[1].reviews[0], rating: 5.0)
     ]
     
-    // State for managing likes
     @State private var likedReviews: Set<UUID> = []
     
     var body: some View {
@@ -55,7 +54,6 @@ struct ActivityTabView: View {
                             .accessibilityElement(children: .combine)
                             .accessibilityLabel("\(activity.userName) liked a review")
                             .accessibilityHint("Double tap to expand activity details")
-
                     }
                 }
             }
@@ -67,14 +65,13 @@ struct ActivityTabView: View {
     
     private func watchedBookView(activity: ActivityItem) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            // User info header
+            // User info header section
             HStack(spacing: 12) {
                 Image(activity.userAvatar)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                    .accessibilityHidden(true) // Hide avatar from VoiceOver
-
+                    .accessibilityHidden(true)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(activity.userName)
@@ -95,7 +92,7 @@ struct ActivityTabView: View {
             }
             
             if let book = activity.book {
-                // Book details
+                // Book details section with NavigationLink added
                 Text(book.title)
                     .font(.title3)
                     .fontWeight(.bold)
@@ -106,12 +103,14 @@ struct ActivityTabView: View {
                     .accessibilityLabel("Rating: \(Int(activity.rating ?? book.rating)) stars")
                 
                 HStack(alignment: .top, spacing: 12) {
-                    Image(book.imageName)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 120)
-                        .cornerRadius(8)
-                        .accessibilityHidden(true)
+                    NavigationLink(destination: BookDetailView(book: book)) {
+                        Image(book.imageName)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 80, height: 120)
+                            .cornerRadius(8)
+                    }
+                    .accessibilityHint("Double tap to view book details")
                     
                     if let review = activity.review {
                         VStack(alignment: .leading, spacing: 8) {
@@ -141,18 +140,17 @@ struct ActivityTabView: View {
                             }
                             .accessibilityLabel(likedReviews.contains(activity.id) ? "Unlike review" : "Like review")
                             .accessibilityHint("Double tap to \(likedReviews.contains(activity.id) ? "unlike" : "like") this review")
-
                         }
                     }
                 }
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel("Book: \(book.title)")
-
             }
         }
         .padding()
     }
     
+    // likedReviewView function
     private func likedReviewView(activity: ActivityItem) -> some View {
         HStack(spacing: 12) {
             Image(activity.userAvatar)
@@ -175,7 +173,6 @@ struct ActivityTabView: View {
     }
 }
 
-// Preview
 #Preview {
     NavigationView {
         ActivityTabView()

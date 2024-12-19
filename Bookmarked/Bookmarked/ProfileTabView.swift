@@ -17,7 +17,7 @@ struct ProfileTabView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                // Profile header with stats
+                // Profile header
                 HStack(alignment: .center) {
                     // Avatar and name section with fixed width
                     HStack(spacing: 12) {
@@ -27,8 +27,7 @@ struct ProfileTabView: View {
                             .frame(width: 80, height: 80)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
-                            .accessibilityHidden(true) // Hide avatar
-
+                            .accessibilityHidden(true)
                         
                         Text("dardarius")
                             .font(.headline)
@@ -36,7 +35,6 @@ struct ProfileTabView: View {
                             .lineLimit(1)
                             .frame(width: 100, alignment: .leading)
                             .accessibilityLabel("Username: dardarius")
-
                     }
                     
                     Spacer()
@@ -53,7 +51,6 @@ struct ProfileTabView: View {
                         }
                         .accessibilityElement(children: .combine)
                         .accessibilityLabel("Read \(readBooks) books")
-
                         
                         Rectangle()
                             .frame(width: 1, height: 40)
@@ -74,7 +71,7 @@ struct ProfileTabView: View {
                 }
                 .padding(.horizontal)
                 
-                // Favorites section
+                // Favorites section with NavigationLink added
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Favorites")
                         .font(.title2)
@@ -84,14 +81,16 @@ struct ProfileTabView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(sampleBooks.prefix(4)) { book in
-                                Image(book.imageName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 150)
-                                    .cornerRadius(8)
-                                    .shadow(radius: 4)
-                                    .accessibilityLabel("Favorite book: \(book.title)")
-
+                                NavigationLink(destination: BookDetailView(book: book)) {
+                                    Image(book.imageName)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 100, height: 150)
+                                        .cornerRadius(8)
+                                        .shadow(radius: 4)
+                                }
+                                .accessibilityLabel("Favorite book: \(book.title)")
+                                .accessibilityHint("Double tap to view book details")
                             }
                         }
                         .padding(.horizontal)
@@ -99,7 +98,7 @@ struct ProfileTabView: View {
                     .accessibilityLabel("Favorite books carousel")
                 }
                 
-                // Recent Activity section
+                // Recent Activity section with NavigationLink added
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Recent Activity")
                         .font(.title2)
@@ -109,24 +108,26 @@ struct ProfileTabView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(recommendedBooks.prefix(3)) { book in
-                                VStack(alignment: .leading, spacing: 4) { // Reduced spacing
-                                    Image(book.imageName)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 150)
-                                        .cornerRadius(8)
-                                        .shadow(radius: 4)
-                                    
-                                    HStack { // Added HStack for better star alignment
-                                        StarRatingView(rating: book.rating)
-                                            .scaleEffect(0.7) // Smaller scale
-                                        Spacer() // Push stars to the left
+                                NavigationLink(destination: BookDetailView(book: book)) {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Image(book.imageName)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 100, height: 150)
+                                            .cornerRadius(8)
+                                            .shadow(radius: 4)
+                                        
+                                        HStack {
+                                            StarRatingView(rating: book.rating)
+                                                .scaleEffect(0.7)
+                                            Spacer()
+                                        }
+                                        .frame(width: 100)
                                     }
-                                    .frame(width: 100) // Match image width
                                 }
                                 .accessibilityElement(children: .combine)
                                 .accessibilityLabel("Recent book: \(book.title), rated \(Int(book.rating)) stars")
-
+                                .accessibilityHint("Double tap to view book details")
                             }
                         }
                         .padding(.horizontal)
@@ -134,7 +135,7 @@ struct ProfileTabView: View {
                     .accessibilityLabel("Recent activity carousel")
                 }
                 
-                // Stats section
+                // Stats section 
                 VStack(spacing: 0) {
                     Button(action: {}) {
                         HStack {
@@ -152,7 +153,6 @@ struct ProfileTabView: View {
                     }
                     .accessibilityLabel("Books: \(totalBooks) out of \(yearlyGoal) yearly goal")
                     .accessibilityHint("Double tap to view books")
-
                     
                     Divider()
                     
@@ -219,7 +219,6 @@ struct ProfileTabView: View {
         }
         .navigationTitle("Profile")
         .accessibilityLabel("Profile page")
-
     }
 }
 

@@ -10,13 +10,13 @@ import SwiftUI
 
 
 struct ContentView: View {
-    // Properties remain the same
+    // Properties
     @State private var selectedTab: Tab = .books
     @State private var selectedMainTab: MainTab = .home
     @State private var isSearching: Bool = false
     @State private var searchText: String = ""
 
-    // Enums remain the same
+    // Enums 
     enum Tab: String, CaseIterable {
         case books = "Books"
         case reviews = "Reviews"
@@ -112,7 +112,7 @@ struct ContentView: View {
     }
 }
 
-// MARK: - SearchView remains exactly the same
+// MARK: - SearchView
 struct SearchView: View {
     @Binding var searchText: String
 
@@ -172,7 +172,7 @@ struct SearchView: View {
     }
 }
 
-// Preview remains the same
+// Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

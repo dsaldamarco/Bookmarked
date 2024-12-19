@@ -15,7 +15,7 @@ struct BookDetailOverlay: View {
     @Environment(\.dismiss) var dismiss
     @GestureState private var dragOffset: CGFloat = 0
     
-    // Reading highlights function remains the same
+    // Reading highlights function 
     private func getReadingHighlights() -> String {
         switch book.title {
         case "Norvegian Wood":
@@ -52,7 +52,7 @@ struct BookDetailOverlay: View {
                         .accessibilityLabel("Book cover of \(book.title)")
                         .accessibilityHint("Double tap to view full book details")
                         
-                        // App Store style header remains the same
+                        // App Store style header
                         HStack(spacing: 16) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(book.title)
